@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="css/css/all.css" rel="stylesheet"> <!--load all styles -->
+    <link rel="stylesheet" href="css/app.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue JS</title>
+
+</head>
+<body>
+    <div class="container">
+        <div id="app">
+            <tasks></tasks>
+            <user name="Christopher" last-name="huaman"></user>
+            <!-- <user>Soy</user> -->
+
+            <!-- v-test -->
+            <!-- v-show -->
+            <!-- v-if     v-else -->
+
+            <h1 v-if="message.length > 2">Hola <span v-text="message"></span></h1>
+            <h1 v-else="message.length > 2">Por favor escribe tu nombre </h1>
+            <input type="text" v-model="message">
+            <!-- <button v-on:click="message=message.split('').reverse().join('')">Invertir</button> -->
+            <button @click="reverse">Invertir</button>
+
+            <h1>Lista de tareas</h1>
+            <p>{{ reverseTask }}</p>
+            <ul>
+                <li v-text="tareas1[0]"></li>
+                <li v-text="tareas1[1]"></li>
+            </ul>
+
+            <ul>
+                <li v-for="tarea in tareas1">{{tarea}}</li>
+            </ul>
+
+            <ul>
+                <li v-for="tarea in tareas1" v-text="tarea"></li>
+            </ul>
+
+            <ul>
+                <li v-for="tarea in tareas2" v-text="tarea.title"></li>
+            </ul>
+
+            <ul>
+                <li v-for="tarea in tareas3">
+                    <span v-text="tarea.title"></span>
+                    <small v-if="tarea.completed">Tarea Completa</small>
+                    <small v-else>Tarea Incompleta</small>
+                </li>
+
+            </ul>
+
+            <ul>
+                <li v-for="task in tasks">
+                    <span v-text="task.title"></span>
+                    <!-- <small v-if="task.completed">Tarea Completa</small>
+                    <small v-else>Tarea Incompleta</small> -->
+
+                    <!-- <small @click="task.completed=false" v-if="task.completed" class="mano">Tarea Completa</small>
+                    <small @click="task.completed=true" v-else class="mano">Tarea Incompleta </small> -->
+
+                    <!-- <small @click="task.completed= ! task.completed"
+                        v-bind:class="{
+                            'mano' : true,
+                            'far fa-check-square': task.completed,
+                            'fas fa-ban': !task.completed
+                        }
+                        ">
+                    </small> -->
+
+                    <!-- <small @click="task.completed= ! task.completed"
+                    v-bind:class="['mano',task.completed ? 'far fa-check-square' : 'fas fa-ban']"></small> -->
+
+                    <!-- <small @click="task.completed= ! task.completed"
+                        :class="['mano',task.completed ? 'far fa-check-square' : 'fas fa-ban']"></small> -->
+
+                    <!-- <small @click="task.completed= ! task.completed"
+                        :class="taskClasses(task)"></small> -->
+
+                    <small @click="completeTask(task)" :class="taskClasses(task)"></small>
+
+                </li>
+
+                <li class="form-inline">
+                    <input v-model="newTask" type="text" class="form-control">
+                    <button v-on:click="addTask" class="btn btn-primary">+</button>
+                    <h1> -> Sin boton -> </h1>
+                    <input v-on:keyup.enter="addTask" v-model="newTask" type="text" class="form-control">
+                </li>
+            </ul>
+
+                <!-- <pre>{{$data}}</pre> -->
+
+        </div>
+
+
+
+    </div>
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>
+
+
+
